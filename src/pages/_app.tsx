@@ -1,11 +1,19 @@
 import Head from 'next/head';
 import { AppProps } from 'next/app';
+import { Montserrat } from 'next/font/google';
 
 import WithdrawalBirthdayProvider from '@/context/withdrawalBirthdayContext';
 
+import '@/styles/globals.css';
+
+const montserrat = Montserrat({
+  variable: '--font-montserrat',
+  subsets: ['latin'],
+});
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <WithdrawalBirthdayProvider>
+    <>
       <Head>
         <title>Calculadora de FGTS</title>
         <meta
@@ -15,8 +23,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Component {...pageProps} />
-    </WithdrawalBirthdayProvider>
+      <main className={`${montserrat.className} font-sans`}>
+        <WithdrawalBirthdayProvider>
+          <Component {...pageProps} />
+        </WithdrawalBirthdayProvider>
+      </main>
+    </>
   );
 }
 

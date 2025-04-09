@@ -7,7 +7,7 @@ export default function Result() {
 
   return (
     <main>
-      <h1>Resultado</h1>
+      <h1>Resultado da sua pesquisa</h1>
       <p>
         Nome: <strong>{userName}</strong>
       </p>
