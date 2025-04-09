@@ -74,7 +74,8 @@ export default function Home() {
         <div>
           <label htmlFor='fgtsBalace'>Saldo do FGTS (R$):</label>
           <input
-            type='text'
+            type='number'
+            step='any'
             id='fgtsBalace'
             name='fgtsBalace'
             value={fgtsBalace}

@@ -38,7 +38,21 @@ export default function WithdrawalBirthdayProvider({
 
   useEffect(() => {
     if (userFgtsBalace !== undefined) {
-      setUserWithdrawalBirthday(userFgtsBalace);
+      if (userFgtsBalace <= 500) {
+        setUserWithdrawalBirthday(userFgtsBalace * 0.5);
+      } else if (userFgtsBalace <= 1000) {
+        setUserWithdrawalBirthday(userFgtsBalace * 0.4 + 50);
+      } else if (userFgtsBalace <= 5000) {
+        setUserWithdrawalBirthday(userFgtsBalace * 0.3 + 150);
+      } else if (userFgtsBalace <= 10000) {
+        setUserWithdrawalBirthday(userFgtsBalace * 0.2 + 650);
+      } else if (userFgtsBalace <= 15000) {
+        setUserWithdrawalBirthday(userFgtsBalace * 0.15 + 1150);
+      } else if (userFgtsBalace <= 20000) {
+        setUserWithdrawalBirthday(userFgtsBalace * 0.1 + 1900);
+      } else {
+        setUserWithdrawalBirthday(userFgtsBalace * 0.05 + 2900);
+      }
     }
   }, [userFgtsBalace, setUserWithdrawalBirthday]);
 

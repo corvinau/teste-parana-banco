@@ -12,7 +12,8 @@ export default function Result() {
         Nome: <strong>{userName}</strong>
       </p>
       <p>
-        Valor do saque-aniversário: <strong>{userWithdrawalBirthday}</strong>
+        Valor do saque-aniversário:{' '}
+        <strong>{userWithdrawalBirthday?.toFixed(2)}</strong>
       </p>
 
       <Link href='/'>Voltar para a Home</Link>
