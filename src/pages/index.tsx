@@ -1,12 +1,13 @@
-import Component from '../components/component';
+import Link from 'next/link';
+
+import SimpleForm from '@/components/Form/Form';
 
 export default function HomePage() {
   return (
     <div>
-      <h1>Bem-vindo à Página Inicial!</h1>
-      <Component />
-      <p>Esta é a página inicial.</p>
-      <a href='/result'>Resultado</a>
+      <h1>Preencha seus dados para ver a proposta</h1>
+      <SimpleForm />
+      <Link href='/result'>Resultado</Link>
     </div>
   );
 }

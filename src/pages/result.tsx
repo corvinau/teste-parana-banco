@@ -1,9 +1,11 @@
+import Link from 'next/link';
+
 export default function Result() {
   return (
     <div>
       <h1>Resultado</h1>
       <p>Esta é a página de resultado.</p>
-      <a href='/'>Voltar para a Home</a>
+      <Link href='/'>Voltar para a Home</Link>
     </div>
   );
 }
