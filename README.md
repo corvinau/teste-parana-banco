@@ -34,7 +34,7 @@ Com isso, a aplicação estará rodando em <code>http://localhost:3000</code>. P
 
 ## Acessando o projeto em um servidor
 
-Para visualizar o projeto rodando em um servidor da [`Vercel`](https://vercel.com/), acesse: []()
+Para visualizar o projeto rodando em um servidor da [`Vercel`](https://vercel.com/), acesse: [teste-parana-banco.vercel.app/](https://teste-parana-banco.vercel.app/)
 
 ## Tecnologias utilizadas
 
