@@ -20,6 +20,11 @@ const months = [
   'Dezembro',
 ];
 
+interface PhoneValidationResponse {
+  valid: boolean;
+  reason?: string;
+}
+
 export default function Home() {
   const { setUserName, setUserFgtsBalace } = useWithdrawalBirthday();
   const router = useRouter();
@@ -28,14 +33,44 @@ export default function Home() {
   const [phone, setPhone] = useState<string>('');
   const [fgtsBalace, setFgtsBalace] = useState<string>('');
   const [birthdayMonth, setBirthdayMonth] = useState<string>('');
+  const [phoneError, setPhoneError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const validatePhone = async (
+    phoneNumber: string
+  ): Promise<PhoneValidationResponse> => {
+    const apiUrl = `https://phonevalidation.abstractapi.com/v1/?api_key=9e60684755dd47ecbe1ec1814e4793d0&phone=55${phoneNumber}`;
+
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        console.error('Erro ao validar telefone:', response.status);
+        return { valid: false, reason: 'Erro ao comunicar com o servidor.' };
+      }
+      const data: PhoneValidationResponse = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Erro ao validar telefone:', error);
+      return { valid: false, reason: 'Erro inesperado ao validar.' };
+    }
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setPhoneError(null);
+    setIsSubmitting(true);
 
-    setUserName(name);
-    setUserFgtsBalace(parseFloat(fgtsBalace));
+    const validationResult = await validatePhone(phone);
 
-    router.replace('/result');
+    if (validationResult.valid) {
+      setUserName(name);
+      setUserFgtsBalace(parseFloat(fgtsBalace));
+      setIsSubmitting(false);
+      router.replace('/result');
+    } else {
+      setPhoneError(validationResult.reason || 'Número de telefone inválido.');
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -57,11 +92,12 @@ export default function Home() {
               setName(event.target.value);
             }}
             required
+            placeholder='João da Silva'
           />
         </div>
 
         <div>
-          <label htmlFor='phone'>Telefone</label>
+          <label htmlFor='phone'>Telefone (com DDD, apenas números)</label>
           <input
             type='tel'
             id='phone'
@@ -71,7 +107,9 @@ export default function Home() {
               setPhone(event.target.value);
             }}
             required
+            placeholder='(xx)xxxxx-xxxx'
           />
+          {phoneError && <p style={{ color: 'red' }}>{phoneError}</p>}
         </div>
 
         <div>
@@ -85,6 +123,7 @@ export default function Home() {
             onChange={(event) => {
               setFgtsBalace(event.target.value);
             }}
+            placeholder='1000,00'
           />
         </div>
 
@@ -107,7 +146,9 @@ export default function Home() {
           </select>
         </div>
 
-        <button type='submit'>Ver Proposta</button>
+        <button type='submit' disabled={isSubmitting}>
+          {isSubmitting ? 'Enviando...' : 'Ver Proposta'}
+        </button>
       </form>
     </div>
   );
