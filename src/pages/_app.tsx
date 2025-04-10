@@ -15,12 +15,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Calculadora de FGTS</title>
+        <title>Calculadora de saque-aniversário</title>
         <meta
           name='description'
-          content='Calcule o valor do seu saque-aniversário'
+          content='Calcule o valor do seu saque-aniversário de acordo com o saldo do seu FGTS'
         />
-        <link rel='icon' href='/favicon.ico' />
+        <link rel='icon' href='/favicon.svg' />
       </Head>
 
       <main className={`${montserrat.className} font-sans`}>

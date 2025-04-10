@@ -39,12 +39,15 @@ export default function Home() {
   };
 
   return (
-    <main>
-      <h1>Preencha seus dados para ver a proposta do seu saque-aniversário</h1>
+    <div>
+      <h1>
+        Preencha os campos abaixo com seus dados para ver a proposta do seu
+        saque-aniversário
+      </h1>
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor='name'>Nome completo:</label>
+          <label htmlFor='name'>Nome completo</label>
           <input
             type='text'
             id='name'
@@ -58,7 +61,7 @@ export default function Home() {
         </div>
 
         <div>
-          <label htmlFor='phone'>Telefone:</label>
+          <label htmlFor='phone'>Telefone</label>
           <input
             type='tel'
             id='phone'
@@ -72,7 +75,7 @@ export default function Home() {
         </div>
 
         <div>
-          <label htmlFor='fgtsBalace'>Saldo do FGTS (R$):</label>
+          <label htmlFor='fgtsBalace'>Saldo do FGTS (R$)</label>
           <input
             type='number'
             step='any'
@@ -86,7 +89,7 @@ export default function Home() {
         </div>
 
         <div>
-          <label htmlFor='birthdayMonth'>Mês de Aniversário:</label>
+          <label htmlFor='birthdayMonth'>Mês de Aniversário</label>
           <select
             id='birthdayMonth'
             name='birthdayMonth'
@@ -106,6 +109,6 @@ export default function Home() {
 
         <button type='submit'>Ver Proposta</button>
       </form>
-    </main>
+    </div>
   );
 }
